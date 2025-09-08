@@ -156,7 +156,8 @@
     }
 
     .popup, .difficulty-popup {
-      position: fixed;
+      position: relative;
+      display: none;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -210,6 +211,20 @@
       font-size: 16px;
       cursor: pointer;
     }
+
+    .close-difficulty {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-difficulty:hover {
+  color: red; /* 마우스 올리면 빨간색 */
+}
+
     #specialText {
       margin-top: 10px;
       font-weight: bold;
@@ -400,7 +415,7 @@
     <button onclick="selectDifficulty('중')">중</button>
     <button onclick="selectDifficulty('상')">상</button>
     <br><br>
-    <button onclick="closeDifficultyPopup()">닫기 ❌</button>
+    <button onclick="closeDifficultyPopup()">❌</button>
   </div>
 
   <div id="specialEventText"></div>
@@ -1120,4 +1135,3 @@ function drawBoard() {
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </body>
 </html>
-
