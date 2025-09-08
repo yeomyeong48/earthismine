@@ -371,22 +371,6 @@
   pointer-events: none;
   animation: explode 1s ease-out;
 }
-
-#difficulty-popup {
-  position: relative; /* 닫기 버튼 위치를 잡기 위해 필요 */
-}
-
-.close-difficulty {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 18px;
-  cursor: pointer;
-  color: #333;
-}
-.close-difficulty:hover {
-  color: red;
-}
   </style>
 </head>
 <body>
@@ -431,7 +415,7 @@
     <button onclick="selectDifficulty('중')">중</button>
     <button onclick="selectDifficulty('상')">상</button>
     <br><br>
-    <span class="close-difficulty" onclick="closeDifficultyPopup()">✖</span>
+    <button onclick="closeDifficultyPopup()">❌</button>
   </div>
 
   <div id="specialEventText"></div>
@@ -748,6 +732,10 @@ function getRandomHardQuestion() {
      const rand = unused[Math.floor(Math.random() * unused.length)];
      usedHardQuestions.push(rand.question); // 질문 텍스트로 기록
      return rand;
+
+    // 랜덤으로 선택
+    const randomIndex = Math.floor(Math.random() * unusedHardQuestions.length);
+    const question = unusedHardQuestions[randomIndex];
 
     // 사용 기록에 추가
     usedHardQuestions.push(question.id);
