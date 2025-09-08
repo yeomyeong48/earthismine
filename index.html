@@ -798,11 +798,6 @@ function selectCity(cityName) {
     }
 }
 
-function closeDifficultyPopup() {
-  document.getElementById("difficulty-popup").style.display = "none";
-  selectedCity = ""; // 선택했던 도시 초기화
-}
-
 function showQuestion(currentQuestion) {
     resetQuestionUI(); // 여기서도 초기화 반복
 
@@ -1090,6 +1085,11 @@ function drawBoard() {
 
   document.getElementById("rankingList").innerHTML = rankingText;
   document.getElementById("rankingPopup").style.display = "block";
+}
+
+function closeDifficultyPopup() {
+  document.getElementById("difficulty-popup").style.display = "none";
+  selectedCity = ""; // 선택했던 도시 초기화
 }
    
     function closeRankingPopup() {
