@@ -568,7 +568,7 @@ window.addEventListener("load", async () => {
 
     // ===== 기존 스크립트 유지 =====
     const players = [];
-    const playerColors = ["red", "orange", "yellow", "green", "blue", "purple"];
+    const playerColors = ["red", "orange", "green", "blue"];
     let currentPlayer = 0;
     const usedQuestions = {}; // 예: { '개봉-하': true }
     const cities = [
@@ -597,7 +597,7 @@ window.addEventListener("load", async () => {
       "함부르크": "비상! 콜레라 창궐!\n우리나라에서 대통령이 된 사람은 총 몇 명인가요?"
     };
 
-    const startPositionsIndexes = [0, 9, 90, 99, 4, 95];
+    const startPositionsIndexes = [0, 9, 90, 99];
     const startPositions = startPositionsIndexes.map(i => cities[i]);
 
     const fixedQuestions = {
