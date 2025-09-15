@@ -84,7 +84,10 @@
 
 #resourceBox {
     font-size: 48px;        /* 글자 크기 키움 */
-    margin-top: 5px;       /* 위쪽 여백 */
+    margin: 0;       /* 위아래 여백 제거 */
+    padding: 5px;    /* 조금만 안쪽 여백 */
+    width: 90%;      /* 폭 조정 */
+    box-sizing: border-box; /* 패딩 포함 폭 계산 */
     text-align: left;       /* 왼쪽 정렬 */
 }
 
@@ -274,7 +277,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 40px;        /* 안쪽 여백 크게 */
+  padding: 10px;        /* 안쪽 여백 크게 */
+  gap: 5px;
   border: 3px solid black;
   border-radius: 15px;
   width: 90%;
@@ -327,7 +331,10 @@
 }
 
 #choicesContainer {
-  margin-top: 20px;
+  margin: 0;       /* 위아래 여백 제거 */
+  padding: 5px;    /* 조금만 안쪽 여백 */
+  width: 90%;      /* 폭 조정 */
+  box-sizing: border-box; /* 패딩 포함 폭 계산 */
   display: flex;
   flex-direction: column; /* 세로 정렬 */
   gap: 10px; /* 보기 사이 간격 */
@@ -335,7 +342,7 @@
 
 #choicesContainer button {
   font-size: 16px;   /* 보기 글자 크기 키움 */
-  padding: 8px 12px;      /* 보기 버튼 크기 키움 */
+  padding: 5px 10px;      /* 보기 버튼 크기 키움 */
   border-radius: 10px;
   border: 2px solid #333;
   cursor: pointer;
@@ -344,7 +351,8 @@
 #questionText {
   font-size: 30px;   /* ← 문제 글씨 크게 */
   font-weight: bold;
-  margin-bottom: 10px;
+  margin: 0;       /* 위아래 여백 제거 */
+  padding: 0;      /* 패딩 제거 */
   text-align: center;
   white-space: pre-line;   /* 줄바꿈(\n) 표시 */
 }
