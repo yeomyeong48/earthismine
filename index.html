@@ -84,7 +84,7 @@
 
 #resourceBox {
     font-size: 36px;        /* 글자 크기 키움 */
-    margin: 4px 0;         /* 위아래 여백 줄임 */
+    margin:0;         /* 위아래 여백 줄임 */
     padding: 6px;
     text-align: left;       /* 왼쪽 정렬 */
 }
@@ -272,6 +272,9 @@
 }
 
 #questionPopup {
+  display: flex;             /* 플렉스로 세로 정렬 */
+  flex-direction: column;    /* 세로 방향 */
+  margin: 0;                 /* 바깥 여백 제거 */
   position: fixed;
   top: 50%;
   left: 50%;
@@ -288,7 +291,7 @@
   z-index: 1000;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
   overflow-y: auto;
-  gap: 6px;
+  gap: 4px;
 }
 
 .material-box {
