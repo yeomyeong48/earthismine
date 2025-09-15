@@ -857,24 +857,6 @@ showAnswerBtn.onclick = () => {
     document.getElementById("questionPopup").style.display = "block";
 }
 
-function cleanQuestionText(text) {
-    if (!text) return "";
-
-    // 1. 윈도우 줄바꿈 통일
-    text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
-    // 2. 연속된 빈 줄 제거 (3줄 이상 → 1줄만 남김)
-    text = text.replace(/\n{2,}/g, "\n");
-
-    // 3. 각 줄 앞뒤 공백 제거
-    text = text.split("\n").map(line => line.trim()).join("\n");
-
-    // 4. 맨 앞뒤 공백 제거
-    text = text.trim();
-
-    return text;
-}
-
 // 정답 / 오답 버튼
 // 정답/오답 버튼 클릭 처리
 function handleAnswer(isCorrect) {
@@ -1024,6 +1006,24 @@ function answerMultipleChoice(choiceIndex) {
   const correct = selectedText === currentQuestion.answer;
 
   answerQuestion(correct); // 기존 answerQuestion 재사용  
+}
+
+function cleanQuestionText(text) {
+    if (!text) return "";
+
+    // 1. 윈도우 줄바꿈 통일
+    text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+
+    // 2. 연속된 빈 줄 제거 (3줄 이상 → 1줄만 남김)
+    text = text.replace(/\n{2,}/g, "\n");
+
+    // 3. 각 줄 앞뒤 공백 제거
+    text = text.split("\n").map(line => line.trim()).join("\n");
+
+    // 4. 맨 앞뒤 공백 제거
+    text = text.trim();
+
+    return text;
 }
 
 function drawBoard() {
