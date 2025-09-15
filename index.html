@@ -807,8 +807,14 @@ function showQuestion(currentQuestion) {
     .filter(line => line !== "")  // 빈 줄 제거
     .join("\n");                  // 다시 합치기
 
+    const questionTextEl = document.getElementById("questionText");
+questionTextEl.innerHTML = (currentQuestion.question || "")
+  .replace(/\\n/g, "<br>"); // CSV에서 가져온 \n → <br>
+questionTextEl.style.display = "block";
+
     // 일반 도시 문제 UI
-    document.getElementById("questionText").textContent = currentQuestion.question || "";
+    document.getElementById("questionResource").innerHTML = 
+  (currentQuestion.resource || "").replace(/\\n/g, "<br>");
     document.getElementById("questionText").style.display = "block";
 
     const resourceBox = document.getElementById("resourceBox");
