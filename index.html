@@ -137,7 +137,7 @@
   vertical-align: middle;
 }
 
-    #endGameButton {
+ #endGameButton {
       display: block;
       width: 100%;
       padding: 10px 0;
@@ -155,7 +155,7 @@
       background-color: #a71d2a;
     }
 
-    .difficulty-popup {
+    .popup, .difficulty-popup {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -168,21 +168,6 @@
       width: 400px;
       text-align: center;
       display: none;
-    }
-
-    .popup {
-     position: fixed;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%);
-      background: #fefefe;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      padding: 24px;
-      z-index: 100;
-      width: 400px;
-      text-align: center;
-      display: none; 
     }
     .difficulty-popup p {
       font-size: 20px;
@@ -229,7 +214,6 @@
       margin-top: 10px;
       font-weight: bold;
       color: #d9534f;
-      white-space: pre-line;   /* 줄바꿈(\n) 표시 */
     }
 
     /* 조 이름 입력칸 디자인 및 숨김 (처음엔 숨김) */
@@ -293,8 +277,10 @@
   padding: 40px;        /* 안쪽 여백 크게 */
   border: 3px solid black;
   border-radius: 15px;
-  width: 1000px;
-  height: 500px;
+  width: 90%;
+  max-width: 1000px;
+  height: auto;
+  overflow-y: auto;  /* 내용이 많으면 스크롤 */
   font-size: 36px;     /* 전체 글자 크기 키움 */
   z-index: 1000;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
@@ -356,7 +342,7 @@
 }
 
 #questionText {
-  font-size: 36px;   /* ← 문제 글씨 크게 */
+  font-size: 30px;   /* ← 문제 글씨 크게 */
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
