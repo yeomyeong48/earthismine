@@ -506,7 +506,7 @@
     let usedHardQuestions = []; // 상 난이도 문제 사용 기록
 
      let csvText = "첫 줄\\n두 번째 줄\\n세 번째 줄";
-     let formattedText = csvText.replace(/\\n/g, '\n');
+     let formattedText = csvText.replace(/\n/g, '\n');
      const resourceBox = document.getElementById('resourceBox');
      resourceBox.innerText = formattedText;
 
