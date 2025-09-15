@@ -89,6 +89,7 @@
     width: 90%;      /* 폭 조정 */
     box-sizing: border-box; /* 패딩 포함 폭 계산 */
     text-align: left;       /* 왼쪽 정렬 */
+    overflow-y: auto;   /* 내용이 많으면 스크롤 */
 }
 
 #resourceBox a {
@@ -272,23 +273,30 @@
 }
 
 #questionPopup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 0px;        /* 안쪽 여백 크게 */
-  gap: 5px;
-  border: 3px solid black;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 1000px;
-  height: auto;
-  overflow-y: auto;  /* 내용이 많으면 스크롤 */
-  font-size: 36px;     /* 전체 글자 크기 키움 */
-  z-index: 1000;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  white-space: pre-line;   /* 줄바꿈(\n) 표시 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 3px solid black;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 80vh;   /* 화면 높이 기준 */
+    overflow-y: auto;
+    font-size: 36px;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    white-space: pre-line;
+    box-sizing: border-box;   /* 패딩과 테두리를 포함 */
+}
+
+/* 내부 텍스트나 자료 박스도 안전하게 제한 */
+#questionPopup > * {
+    max-height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .material-box {
@@ -338,6 +346,7 @@
   display: flex;
   flex-direction: column; /* 세로 정렬 */
   gap: 4px; /* 보기 사이 간격 */
+  overflow-y: auto;   /* 내용이 많으면 스크롤 */
 }
 
 #choicesContainer button {
