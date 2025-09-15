@@ -71,15 +71,19 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    position: absolute;
-    bottom: 0px;     /* 아래쪽 여백 */
-    right: 10px;      /* 오른쪽 여백 */
-    font-size: 14px;  /* 글자 크기 작게 */
-    padding: 5px 10px; /* 버튼 크기 줄임 */
+    font-size: 14px;        /* 글자 크기 작게 */
+    padding: 5px 10px;      /* 버튼 크기 줄임 */
+    margin-left: 10px;      /* 정답, 오답 버튼 옆 간격 */
 }
 
 #showAnswerBtn:hover {
     background-color: #84b2d3;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin-top: 10px;       /* 리소스박스와 간격 */
 }
 
 #resourceBox {
