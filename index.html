@@ -84,10 +84,7 @@
 
 #resourceBox {
     font-size: 48px;        /* 글자 크기 키움 */
-    margin: 0;       /* 위아래 여백 제거 */
-    padding: 0px;    /* 조금만 안쪽 여백 */
-    width: 90%;      /* 폭 조정 */
-    box-sizing: border-box; /* 패딩 포함 폭 계산 */
+    margin-top: 15px;       /* 위쪽 여백 */
     text-align: left;       /* 왼쪽 정렬 */
 }
 
@@ -140,7 +137,7 @@
   vertical-align: middle;
 }
 
- #endGameButton {
+#endGameButton {
       display: block;
       width: 100%;
       padding: 10px 0;
@@ -154,7 +151,8 @@
       transition: background-color 0.3s;
       user-select: none;
     }
-    #endGameButton:hover {
+
+#endGameButton:hover {
       background-color: #a71d2a;
     }
 
@@ -213,7 +211,8 @@
       font-size: 16px;
       cursor: pointer;
     }
-    #specialText {
+
+#specialText {
       margin-top: 10px;
       font-weight: bold;
       color: #d9534f;
@@ -277,13 +276,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 0px;        /* 안쪽 여백 크게 */
-  gap: 5px;
+  padding: 40px;        /* 안쪽 여백 크게 */
   border: 3px solid black;
   border-radius: 15px;
-  width: 90%;
-  max-width: 1000px;
-  height: auto;
+  width: 1000px;
+  height: 500px;
   overflow-y: auto;  /* 내용이 많으면 스크롤 */
   font-size: 36px;     /* 전체 글자 크기 키움 */
   z-index: 1000;
