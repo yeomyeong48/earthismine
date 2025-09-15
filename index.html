@@ -72,7 +72,7 @@
     border-radius: 6px;
     cursor: pointer;
     position: absolute;
-    bottom: 0px;     /* 아래쪽 여백 */
+    bottom: 10px;     /* 아래쪽 여백 */
     right: 10px;      /* 오른쪽 여백 */
     font-size: 14px;  /* 글자 크기 작게 */
     padding: 5px 10px; /* 버튼 크기 줄임 */
@@ -83,9 +83,8 @@
 }
 
 #resourceBox {
-    font-size: 36px;        /* 글자 크기 키움 */
-    margin:0;         /* 위아래 여백 줄임 */
-    padding: 6px;
+    font-size: 48px;        /* 글자 크기 키움 */
+    margin-top: 15px;       /* 위쪽 여백 */
     text-align: left;       /* 왼쪽 정렬 */
 }
 
@@ -138,7 +137,7 @@
   vertical-align: middle;
 }
 
-#endGameButton {
+    #endGameButton {
       display: block;
       width: 100%;
       padding: 10px 0;
@@ -152,8 +151,7 @@
       transition: background-color 0.3s;
       user-select: none;
     }
-
-#endGameButton:hover {
+    #endGameButton:hover {
       background-color: #a71d2a;
     }
 
@@ -212,8 +210,7 @@
       font-size: 16px;
       cursor: pointer;
     }
-
-#specialText {
+    #specialText {
       margin-top: 10px;
       font-weight: bold;
       color: #d9534f;
@@ -222,7 +219,7 @@
     /* 조 이름 입력칸 디자인 및 숨김 (처음엔 숨김) */
     #nameInputs {
       display: none;
-      margin-top: 360px;
+      margin-top: 290px;
     }
     .playerName {
       font-size: 24px;
@@ -272,26 +269,19 @@
 }
 
 #questionPopup {
-  display: relative;             /* 플렉스로 세로 정렬 */
-  flex-direction: column;    /* 세로 방향 */
-  margin: 0;                 /* 바깥 여백 제거 */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 5px;
-  border: 2px solid black;
-  border-radius: 12px;
+  padding: 40px;        /* 안쪽 여백 크게 */
+  border: 3px solid black;
+  border-radius: 15px;
   width: 1000px;
   height: 500px;
-  max-height: 80vh;
-  overflow-y: auto;  /* 스크롤  */
-  font-size: 2.5vmin;     /* 화면 크기에 따라 글자 자동 조절 */
+  font-size: 36px;     /* 전체 글자 크기 키움 */
   z-index: 1000;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  overflow-y: auto;
-  gap: 4px;
 }
 
 .material-box {
@@ -299,7 +289,6 @@
   padding: 10px;
   margin: 10px 0;
   background: #f9f9f9;
-  white-space: pre-line;   /* 줄바꿈(\n) 표시 */
 }
 
 .source {
@@ -334,29 +323,25 @@
 }
 
 #choicesContainer {
-  margin: 4px 0;       /* 위아래 여백 제거 */
-  padding: 5px;    /* 조금만 안쪽 여백 */
-  width: 90%;      /* 폭 조정 */
-  box-sizing: border-box; /* 패딩 포함 폭 계산 */
+  margin-top: 20px;
   display: flex;
   flex-direction: column; /* 세로 정렬 */
+  gap: 10px; /* 보기 사이 간격 */
 }
 
 #choicesContainer button {
   font-size: 16px;   /* 보기 글자 크기 키움 */
-  padding: 5px 10px;      /* 보기 버튼 크기 키움 */
+  padding: 8px 12px;      /* 보기 버튼 크기 키움 */
   border-radius: 10px;
   border: 2px solid #333;
   cursor: pointer;
 }
 
 #questionText {
-  font-size: 30px;   /* ← 문제 글씨 크게 */
+  font-size: 36px;   /* ← 문제 글씨 크게 */
   font-weight: bold;
-  margin: 0;       /* 위아래 여백 제거 */
-  padding: 0;      /* 패딩 제거 */
+  margin-bottom: 20px;
   text-align: center;
-  white-space: pre-line;   /* 줄바꿈(\n) 표시 */
 }
 
 #explosionEffect {
@@ -384,6 +369,8 @@
       <input type="text" placeholder="2조" class="playerName" />
       <input type="text" placeholder="3조" class="playerName" />
       <input type="text" placeholder="4조" class="playerName" />
+      <input type="text" placeholder="5조" class="playerName" />
+      <input type="text" placeholder="6조" class="playerName" />
     </div>
   </div>
 
@@ -577,36 +564,66 @@ window.addEventListener("load", async () => {
 
     // ===== 기존 스크립트 유지 =====
     const players = [];
-    const playerColors = ["red", "orange", "green", "blue"];
+    const playerColors = ["red", "orange", "yellow", "green", "blue", "purple"];
     let currentPlayer = 0;
     const usedQuestions = {}; // 예: { '개봉-하': true }
     const cities = [
-      "청주", "히로시마", "교토", "이스탄불", "뉴욕", "강화도", "광저우", "나가사키", "수마트라", "브뤼셀",
-      "개성", "낙양", "나라", "델포이", "우한", "경주", "난징", "도쿄", "런던", "제주도",
-      "공주", "성도", "자카르타", "로마", "개봉", "함양", "베이징", "카라코룸", "아비뇽", "철원",
-      "김제", "니스", "하노이", "리우데자네이루", "빈", "김해", "양저우", "톨레도", "메카", "파리",
-      "크라스노야르스크", "영파", "콜카타", "멤피스", "나주", "대구", "장안", "앙코르", "바티칸", "함부르크",
+      "청주", "개봉", "교토", "가오", "뉴욕", "강화도", "광저우", "나가사키", "수마트라", "브뤼셀",
+      "개성", "낙양", "나라", "델포이", "우한", "경주", "난징", "도쿄", "런던", "자카르타",
+      "공주", "성도", "오사카", "로마", "히로시마", "광주", "베이징", "카라코룸", "베를린", "캄차카반도",
+      "김제", "니스", "하노이", "리우데자네이루", "사라예보", "김해", "양저우", "뉴델리", "메카", "오시비엥침",
+      "나주", "영가", "콜카타", "멤피스", "크라스노야르스크", "대구", "장안", "앙코르", "바티칸", "함부르크",
       "남양주", "톈진", "카트만두", "베네치아", "논산", "충칭", "키이우", "보스턴", "페르세폴리스", "항저우",
-      "오키나와", "당진", "사라예보", "서울", "상트페테르부르크", "대마도", "아바나", "상주", "베를린", "울산",
+      "오키나와", "당진", "빈", "서울", "상트페테르부르크", "대마도", "아바나", "상주", "아비뇽", "울산",
       "아헨", "원산", "악숨", "서천", "에든버러", "영주", "예루살렘", "인천", "울룬디", "영흥",
-      "워싱턴 D.C.", "오사카", "음반자콩구", "진주", "제네바", "캄차카반도", "카르타고", "곡산", "캔버라", "의령",
-      "상하이", "천안", "가오", "평양", "쿠스코", "광주", "테노치티틀란", "뉴델리", "오시비엥침", "부산"
+      "워싱턴 D.C.", "제주도", "음반자콩구", "진주", "제네바", "철원", "카르타고", "곡산", "캔버라", "의령",
+      "상하이", "천안", "이스탄불", "평양", "쿠스코", "함양", "테노치티틀란", "톨레도", "파리", "부산"
     ];
 
     const specialCities = {
-      "수마트라": "비상! 대지진 발생!\n세계에서 가장 추운 전쟁은?",
-      "오키나와": "비상! 지진 발생!\n세상에서 가장 가난한 왕은?",
-      "우한": "비상! 코로나-19 창궐!\n신하가 왕에게 공을 던지면서 하는 말은?",
-      "자카르타": "비상! 홍수 발생!\n일본 뱀이 한국 뱀을 이길 수 없는 이유는?",
-      "히로시마": "비상! 하늘에서 핵폭탄이 떨어졌다!\n싸움을 잘하는 오리는?",
-      "캄차카반도": "비상! 화산 폭발!\n넌센스 문제!\n조선의 왕 중 가장 계산을 잘한 왕은?",
-      "사라예보": "탕!\n넌센스 문제!\n조선의 왕 중 가장 숫자를 못 세는 왕은?",
-      "오시비엥침": "저기서 군인들이!\n신사가 하는 인사는?",
-      "크라스노야르스크": "비상! 퉁구스카 대폭발!\n여명 학생회는 몇 대 학생회인가요?",
-      "함부르크": "비상! 콜레라 창궐!\n우리나라에서 대통령이 된 사람은 총 몇 명인가요?"
+      "수마트라": {
+        text: "비상! 대지진 발생!\n넌센스 문제! 세계에서 가장 추운 전쟁은?",
+        answer: "제1차 세계대전"
+      },
+      "오키나와": {
+        text: "비상! 지진 발생!\n넌센스 문제! 세상에서 가장 가난한 왕은?",
+        answer: ""
+      },
+      "우한": {
+        text: "비상! 코로나-19 창궐!\n넌센스 문제! 신하가 왕에게 공을 던지면서 하는 말은?",
+        answer: "송구하옵니다, 전하"
+      },
+      "자카르타": {
+        text: "비상! 홍수 발생!\n넌센스 문제! 일본 뱀이 한국 뱀을 이길 수 없는 이유는?",
+        answer: "'독도' 없고 '제주(재주)도' 없어서"
+      },
+      "히로시마": {
+        text: "비상! 하늘에서 핵폭탄이 떨어졌다! 넌센스 문제! 싸움을 잘하는 오리는?",
+        answer: "을지문덕"
+      },
+      "캄차카반도": {
+        text: "비상! 화산 폭발!\n넌센스 문제! 조선의 왕 중 가장 계산을 잘한 왕은?",
+        answer: "연산군"
+      },
+      "사라예보": {
+        text: "탕!\n넌센스 문제! 조선의 왕 중 가장 숫자를 못 세는 왕은?",
+        answer: "세조"
+      },
+      "오시비엥침": {
+        text: "저기서 군인들이!\n넌센스 문제! 신사가 하는 인사는?",
+        answer: "신사임당"
+      },
+      "크라스노야르스크": {
+        text: "비상! 퉁구스카 대폭발! 넌센스 문제! 여명 학생회는 몇 대 학생회인가요?",
+        answer: "48대"
+      },
+      "함부르크": {
+        text: "비상! 콜레라 창궐!\n넌센스 문제! 우리나라에서 대통령이 된 사람은 총 몇 명인가요?",
+        answer: "14명"
+      }
     };
 
-    const startPositionsIndexes = [0, 9, 90, 99];
+    const startPositionsIndexes = [0, 9, 90, 99, 4, 95];
     const startPositions = startPositionsIndexes.map(i => cities[i]);
 
     const fixedQuestions = {
@@ -764,18 +781,30 @@ function resetQuestionUI() {
 
 function selectCity(cityName) {
     resetQuestionUI();  // 기존 문제/스페셜텍스트 초기화
-
     selectedCity = cityName;
 
     if (specialCities[cityName]) {
         // 🔥 스페셜 도시 로직
         const specialTextEl = document.getElementById("specialText");
-        specialTextEl.textContent = specialCities[cityName];
+        specialTextEl.textContent = specialCities[cityName].text;
         specialTextEl.style.display = "block";
 
-        currentQuestion = { city: cityName, isSpecial: true };
+        currentQuestion = {
+            city: cityName,
+            isSpecial: true,
+            text: specialCities[cityName].text,
+            answer: specialCities[cityName].answer
+        };
+
+        showAnswerBtn.onclick = () => {
+    const fullscreenAnswer = document.getElementById("fullscreenAnswer");
+    fullscreenAnswer.textContent = specialCities[cityName].answer || "정답 없음";
+    fullscreenAnswer.style.display = "flex";
+    setTimeout(() => { fullscreenAnswer.style.display = "none"; }, 2000);
+};
 
         document.getElementById("questionPopup").style.display = "block";
+        showQuestion(currentQuestion);
         return;
     } else {
         // 🔥 일반 도시 로직
@@ -799,21 +828,26 @@ function showQuestion(currentQuestion) {
 
     if (currentQuestion.isSpecial) {
         const specialTextEl = document.getElementById("specialText");
-        specialTextEl.textContent = specialCities[currentQuestion.city];
+        specialTextEl.textContent = currentQuestion.text;
         specialTextEl.style.display = "block";
+
+        currentQuestion.text = specialCities[cityName].text;
+        currentQuestion.answer = specialCities[cityName].answer;
+
+        // 정답 버튼
+        const showAnswerBtn = document.getElementById("showAnswerBtn");
+        showAnswerBtn.style.display = "inline-block";
+        showAnswerBtn.onclick = () => {
+            fullscreenAnswer.textContent = currentQuestion.answer || "정답 없음";
+            fullscreenAnswer.style.display = "flex";
+            setTimeout(() => { fullscreenAnswer.style.display = "none"; }, 2000);
+        };
         document.getElementById("questionPopup").style.display = "block";
         return;
     }
 
-    let questionText = (currentQuestion.question || "")
-    .replace(/\r\n/g, "\n")      // 윈도우 줄바꿈 통일
-    .split("\n")                  // 줄 단위로 분리
-    .map(line => line.trim())     // 각 줄 앞뒤 공백 제거
-    .filter(line => line !== "")  // 빈 줄 제거
-    .join("\n");                  // 다시 합치기
-
     // 일반 도시 문제 UI
-    document.getElementById("questionText").textContent = cleanQuestionText(currentQuestion.question);
+    document.getElementById("questionText").textContent = currentQuestion.question || "";
     document.getElementById("questionText").style.display = "block";
 
     const resourceBox = document.getElementById("resourceBox");
@@ -849,18 +883,24 @@ function showQuestion(currentQuestion) {
     const showAnswerBtn = document.getElementById("showAnswerBtn");
 showAnswerBtn.style.display = "inline-block";
 showAnswerBtn.onclick = () => {
-    const fullscreenAnswer = document.getElementById("fullscreenAnswer");
+  const fullscreenAnswer = document.getElementById("fullscreenAnswer");
+
+  if (currentQuestion.isSpecial) {
+    fullscreenAnswer.textContent = specialCities[currentQuestion.city].answer;
+  } else {
     fullscreenAnswer.textContent = currentQuestion.answer || "정답 없음";
-    fullscreenAnswer.style.display = "flex"; // 화면 전체에 표시
+  }
+
+  fullscreenAnswer.style.display = "flex";
+};
 
     // 2초 후 자동 숨김
     setTimeout(() => {
         fullscreenAnswer.style.display = "none";
     }, 2000);
-};
 
     document.getElementById("questionPopup").style.display = "block";
-}
+};
 
 // 정답 / 오답 버튼
 // 정답/오답 버튼 클릭 처리
@@ -1011,24 +1051,6 @@ function answerMultipleChoice(choiceIndex) {
   const correct = selectedText === currentQuestion.answer;
 
   answerQuestion(correct); // 기존 answerQuestion 재사용  
-}
-
-function cleanQuestionText(text) {
-    if (!text) return "";
-
-    // 1. 윈도우 줄바꿈 통일
-    text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
-    // 2. 연속된 빈 줄 제거 (3줄 이상 → 1줄만 남김)
-    text = text.replace(/\n{2,}/g, "\n");
-
-    // 3. 각 줄 앞뒤 공백 제거
-    text = text.split("\n").map(line => line.trim()).join("\n");
-
-    // 4. 맨 앞뒤 공백 제거
-    text = text.trim();
-
-    return text;
 }
 
 function drawBoard() {
