@@ -74,6 +74,9 @@
     font-size: 14px;        /* 글자 크기 작게 */
     padding: 5px 10px;      /* 버튼 크기 줄임 */
     margin-left: 10px;      /* 정답, 오답 버튼 옆 간격 */
+    position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 #showAnswerBtn:hover {
@@ -275,7 +278,7 @@
 }
 
 #questionPopup {
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -356,6 +359,7 @@
   padding: 0;      /* 패딩 제거 */
   text-align: center;
   white-space: pre-line;   /* 줄바꿈(\n) 표시 */
+  overflow-y: auto;      /* 내용이 많으면 스크롤 */
 }
 
 #explosionEffect {
