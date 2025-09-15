@@ -84,7 +84,7 @@
 
 #resourceBox {
     font-size: 36px;        /* 글자 크기 키움 */
-    margin-top: 5px 0;       /* 위쪽 여백 */
+    margin-top: 5px;       /* 위쪽 여백 */
     text-align: left;       /* 왼쪽 정렬 */
 }
 
@@ -285,7 +285,7 @@
   font-size: 2.5vmin;     /* 화면 크기에 따라 글자 자동 조절 */
   z-index: 1000;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  white-space: normal;   /* 줄바꿈(\n) 표시 */
+  white-space: pre-line;  /* 줄바꿈(\n) 표시 */
 }
 
 .material-box {
@@ -351,7 +351,7 @@
   margin: 0;       /* 위아래 여백 제거 */
   padding: 0;      /* 패딩 제거 */
   text-align: center;
-  white-space: normal;   /* 줄바꿈(\n) 표시 */
+  white-space: pre-line;   /* 줄바꿈(\n) 표시 */
 }
 
 #explosionEffect {
@@ -799,6 +799,11 @@ function showQuestion(currentQuestion) {
         document.getElementById("questionPopup").style.display = "block";
         return;
     }
+
+    let questionText = (currentQuestion.question || "")
+        .replace(/\r\n/g, "\n")       // 윈도우 줄바꿈 통일
+        .replace(/\n{3,}/g, "\n\n")   // 3줄 이상 빈 줄 → 2줄로
+        .trim();                       // 앞뒤 공백 제거
 
     // 일반 도시 문제 UI
     document.getElementById("questionText").textContent = currentQuestion.question || "";
