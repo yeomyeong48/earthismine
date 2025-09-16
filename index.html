@@ -540,6 +540,7 @@ if (specialCities[selectedCity]) {
         q => q.city === city && q.difficulty === difficulty
     );
 };
+      document.getElementById("questionText").textContent = currentQuestion.question.replace(/\\n/g, "\n");
       document.getElementById("startButton").addEventListener("click", () => {
       document.getElementById("startButton").style.display = "none";
       document.getElementById("nameInputs").style.display = "block";
