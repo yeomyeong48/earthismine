@@ -540,7 +540,6 @@ if (specialCities[selectedCity]) {
         q => q.city === city && q.difficulty === difficulty
     );
 };
-      document.getElementById("questionText").textContent = currentQuestion.question.replace(/\\n/g, "\n");
       document.getElementById("startButton").addEventListener("click", () => {
       document.getElementById("startButton").style.display = "none";
       document.getElementById("nameInputs").style.display = "block";
@@ -808,6 +807,7 @@ function showQuestion(currentQuestion) {
         specialTextEl.innerHTML = (specialCities[currentQuestion.city] || "").replace(/\\n/g, "<br>");
         specialTextEl.style.display = "block";
         document.getElementById("questionPopup").style.display = "block";
+              document.getElementById("questionText").textContent = currentQuestion.question.replace(/\\n/g, "\n");
         return;
     }
 
@@ -1133,6 +1133,7 @@ function drawBoard() {
         resetQuestionUI();
     });
   // 이제 JS 코드 안전하게 사용 가능
+      
 });
   </script>
   <div id="explosionEffect" style="display: none;">💥</div>
