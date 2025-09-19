@@ -432,13 +432,14 @@
   <div id="questionText" style="display:none; font-size:36px; font-weight:bold;"></div>
 
   <!-- 자료 박스 -->
-  <div id="resourceBox" style="border: 2px solid #444; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px;">
-    <p id="questionResource" style="font-size:50px; margin:0;"></p>
+<div id="resourceBox" style="border: 2px solid #444; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px; display: flex; justify-content: flex-end; align-items: center; gap: 5px;">
+    <span class="resourceIcon">📖</span>
+    <span id="questionSource" style="font-size:30px; color:#666;"></span>
     <p id="questionSource" style="text-align:right; font-size:30px; margin:0; color:#666;"></p>
   </div>
 
   <!-- 보기 (있으면 표시됨) -->
-  <div id="choicesContainer" style="display:flex; flex-direction:column; gap:8px; margin:10px 0;">
+  <div id="choicesContainer" style="display:flex; flex-direction:column; gap:8px; margin:10px 0; font-size: 36px;">
     <button id="choice1" onclick="answerMultipleChoice(0)"></button>
     <button id="choice2" onclick="answerMultipleChoice(1)"></button>
     <button id="choice3" onclick="answerMultipleChoice(2)"></button>
