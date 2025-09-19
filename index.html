@@ -83,13 +83,13 @@
 }
 
 #resourceBox {
-    font-size: 36px;        /* 글자 크기 키움 */
+    font-size: 40px;        /* 글자 크기 키움 */
     margin-top: 15px;       /* 위쪽 여백 */
     text-align: left;       /* 왼쪽 정렬 */
 }
 
 #resourceBox a {
-    font-size: 48px;        /* 링크 글자 크기도 동일하게 키움 */
+    font-size: 40px;        /* 링크 글자 크기도 동일하게 키움 */
     color: #1a73e8;         /* 링크 색상 */
     text-decoration: underline;
 }
@@ -116,6 +116,7 @@
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
+    display: none !important;
 }
 
 #scoreTable th, #scoreTable td {
@@ -219,6 +220,7 @@
       font-size: 50px;
       white-space: pre-line;     /* 줄바꿈 적용 */
       text-align: center;        /* 가운데 정렬 (원하면) */
+      justify-content: center;    /* 세로축 가운데 정렬 */
     }
 
     /* 조 이름 입력칸 디자인 및 숨김 (처음엔 숨김) */
@@ -427,12 +429,12 @@
   <div id="questionContent"></div>
 
   <!-- 문제 -->
-  <div id="questionText" style="display:none; font-size:24px; font-weight:bold;"></div>
+  <div id="questionText" style="display:none; font-size:36px; font-weight:bold;"></div>
 
   <!-- 자료 박스 -->
-  <div id="resourceBox" style="border: 2px solid #444; padding: 10px; margin: 10px 0; background:#f9f9f9; font: size 60px;">
-    <p id="questionResource" style="font-size:18px; margin:0;"></p>
-    <p id="questionSource" style="text-align:right; font-size:14px; margin:0; color:#666;"></p>
+  <div id="resourceBox" style="border: 2px solid #444; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px;">
+    <p id="questionResource" style="font-size:50px; margin:0;"></p>
+    <p id="questionSource" style="text-align:right; font-size:30px; margin:0; color:#666;"></p>
   </div>
 
   <!-- 보기 (있으면 표시됨) -->
