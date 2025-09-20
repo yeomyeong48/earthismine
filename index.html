@@ -78,10 +78,12 @@
     right: 10px;      /* 오른쪽 여백 */
     font-size: 14px;  /* 글자 크기 작게 */
     padding: 5px 10px; /* 버튼 크기 줄임 */
+    align-items: center;      /* 가운데 정렬 (원하면 flex-start / flex-end로 변경) */
+    gap: 10px;                /* 버튼 사이 간격 */
 }
 
 #showAnswerBtn:hover {
-    background-color: #84b2d3;
+    background-color: #ff0000;
 }
 
 #resourceBox {
@@ -434,10 +436,10 @@
   <div id="questionText" style="display:none; font-size:36px; font-weight:bold;"></div>
 
   <!-- 자료 박스 -->
-<div id="resourceBox" style="border: 2px solid #444; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px; display: flex; justify-content: flex-end; align-items: center; gap: 5px;">
-    <span class="resourceIcon">📖</span>
-    <span id="questionResource" style="font-size:30px; color:#666;"></span>
-    <span id="questionSource" style="font-size:30px; color:#666;"></span>
+<div id="resourceBox" style="border: 2px solid #000000; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px; display: flex; justify-content: flex-end; align-items: center; gap: 5px;">
+    <span id="questionResource" style="font-size:30px; color:#000000;"></span>
+    <span class="sourceIcon">📖</span>
+    <span id="questionSource" style="font-size:30px; color:#333333;"></span>
 </div>
 
   <!-- 보기 (있으면 표시됨) -->
