@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>지구는 내 거야!</title>
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+
   <style>
     body {
-      font-family: 'sans-serif';
+      font-family: 'NanumSquareBold';
       text-align: center;
       margin: 0;
       background-image: url('background.png');
@@ -434,9 +436,9 @@
   <!-- 자료 박스 -->
 <div id="resourceBox" style="border: 2px solid #444; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px; display: flex; justify-content: flex-end; align-items: center; gap: 5px;">
     <span class="resourceIcon">📖</span>
+    <span id="questionResource" style="font-size:30px; color:#666;"></span>
     <span id="questionSource" style="font-size:30px; color:#666;"></span>
-    <p id="questionSource" style="text-align:right; font-size:30px; margin:0; color:#666;"></p>
-  </div>
+</div>
 
   <!-- 보기 (있으면 표시됨) -->
   <div id="choicesContainer" style="display:flex; flex-direction:column; gap:8px; margin:10px 0; font-size: 36px;">
