@@ -444,14 +444,22 @@
   <div id="questionText" style="display:none; font-size:36px; font-weight:bold;"></div>
 
   <!-- 자료 박스 -->
-<div id="resourceBox" style="border: 2px solid #000000; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px; display: flex; justify-content: flex-end; align-items: center; gap: 5px;">
-    <span id="questionResource" style="font-size:30px; color:#000000;"></span>
-    <span class="sourceIcon" style="font-size:16px;">📖</span>
+<div id="resourceBox"
+     style="border: 2px solid #000000; padding: 10px; margin: 10px 0; background:#f9f9f9; font-size: 60px; display: flex; justify-content: flex-end; align-items: center; gap: 5px;">
+  
+  <!-- 리소스 (자료) : 위쪽, 왼쪽 정렬 -->
+  <div id="questionResource" 
+       style="font-size:30px; color:#000000; text-align:left; margin-bottom:5px;"></div>
+
+  <!-- 소스 (책 아이콘 + 출처) : 아래쪽, 오른쪽 정렬 -->
+  <div style="text-align:right;">
+    <span class="sourceIcon" style="font-size:30px;">📖</span>
     <span id="questionSource" style="font-size:30px; color:#7c7c7c;"></span>
+  </div>
 </div>
 
   <!-- 보기 (있으면 표시됨) -->
-  <div id="choicesContainer" style="display:flex; flex-direction:column; gap:8px; margin:10px 0; font-size: 36px;">
+  <div id="choicesContainer" style="display:flex; flex-direction:column; gap:15px; margin:10px 0; font-size: 50px; text-align:left; padding-left:20px;">
     <button id="choice1" onclick="answerMultipleChoice(0)"></button>
     <button id="choice2" onclick="answerMultipleChoice(1)"></button>
     <button id="choice3" onclick="answerMultipleChoice(2)"></button>
@@ -675,14 +683,14 @@ window.addEventListener("load", async () => {
   document.getElementById("difficultyPopup").style.display = "block";
 }
 
-    function selectDifficulty(difficulty) {
-  selectedDifficulty = difficulty;    // 난이도 저장
+function selectDifficulty(difficulty) {
+  selectedDifficulty = difficulty;
   document.getElementById("difficultyPopup").style.display = "none";
 
-    if (specialCities[selectedCity]) {
+  if (specialCities[selectedCity]) {
     currentQuestion = { city: selectedCity, isSpecial: true };
     showQuestion(currentQuestion);
-    return; // 🔥 일반 도시 로직 타지 않도록 return
+    return;
   }
 
   const key = `${selectedCity}-${difficulty}`;
@@ -690,30 +698,30 @@ window.addEventListener("load", async () => {
     alert("이미 푼 문제입니다!");
     return;
   }
-  usedQuestions[key] = true;  // 사용 기록 저장
+  usedQuestions[key] = true;
 
-  currentQuestion = "";
+  currentQuestion = null;
 
- if (difficulty === "상") {
-    // 도시 없이 상 난이도 문제만 모으기
-    const hardQuestions = questionsFromSheet.filter(
-      q => q.difficulty === "상"
+  if (difficulty === "상") {
+    // 1. 전체 '상' 난이도 문제 중에서 아직 사용되지 않은 문제만 필터링합니다.
+    const availableHardQuestions = questionsFromSheet.filter(q =>
+      q.difficulty === "상" && !usedHardQuestions.includes(q.question)
     );
 
-    if (hardQuestions.length > 0) {
-      // 랜덤으로 하나 뽑기
-      currentQuestion = hardQuestions[Math.floor(Math.random() * hardQuestions.length)];
+    if (availableHardQuestions.length > 0) {
+      // 2. 사용 가능한 문제 중에서 무작위로 하나를 선택합니다.
+      currentQuestion = availableHardQuestions[Math.floor(Math.random() * availableHardQuestions.length)];
+      // 3. 선택된 문제의 내용을 usedHardQuestions 배열에 추가하여 사용 기록을 남깁니다.
+      usedHardQuestions.push(currentQuestion.question);
     } else {
-      alert("상 난이도 문제가 없습니다!");
+      alert("모든 '상' 난이도 문제가 소진되었습니다!");
       return;
     }
-
   } else {
-    // 하/중 난이도는 도시+난이도 일치해야 함
-    currentQuestion = questionsFromSheet.find(q => {
-   return q.city?.trim() === selectedCity?.trim() &&
-          q.difficulty?.trim() === difficulty?.trim();
-});
+    currentQuestion = questionsFromSheet.find(q =>
+      q.city?.trim() === selectedCity?.trim() &&
+      q.difficulty?.trim() === difficulty?.trim()
+    );
   }
 
   if (!currentQuestion) {
@@ -852,6 +860,8 @@ questionTextEl.style.display = "block";
     } else {
         resourceBox.style.display = "none";
     }
+
+    
 
     const choices = [currentQuestion.choice1, currentQuestion.choice2, currentQuestion.choice3, currentQuestion.choice4];
     const hasChoices = choices.some(c => c && c.trim() !== "");
